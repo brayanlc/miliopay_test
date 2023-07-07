@@ -1,0 +1,62 @@
+h2 {
+  margin-bottom: 2rem;
+  color: #242424;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 1;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 2rem;
+  color: #242424;
+  font-weight: 400;
+  font-size: 22px;
+  text-align: center;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 100%;
+
+  label {
+    color: #242424;
+    font-weight: 400;
+    font-size: 16px;
+    position: absolute;
+    top: -12px;
+    left: .5rem;
+    background-color: #ffffff;
+    padding: 0 .2rem;
+  }
+
+  input {
+    border: 1px solid #707070;
+    border-radius: 5px;
+    padding: 0.45rem;
+    color: #242424;
+    font-weight: 400;
+    font-size: 19px;
+    width: 100%;
+  }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  height: 100vh;
+}
+
+.card-login {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding: 3rem;
+  width: 95%;
+  max-width: 500px;
+  align-items: center;
+}
