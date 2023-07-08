@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { LoginContainerComponent } from '../../components/login-container/login-container.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,14 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('entradaAnimacion', [
+      transition(':enter', [
+        style({ transform: 'translateX(100%)' }),
+        animate('500ms', style({ transform: 'translateX(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class LoginComponent {
   email = new FormControl('', [Validators.required, Validators.email]);

@@ -1,16 +1,14 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+}
+
 p {
   color: #242424;
   font-weight: 400;
   font-size: 22px;
   text-align: center;
-}
-
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  height: 100vh;
 }
 
 .alert {

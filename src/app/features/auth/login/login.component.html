@@ -1,5 +1,4 @@
-<div class="login-container">
-  <app-login-container *ngIf="!showEnterPassword">
+  <app-login-container *ngIf="!showEnterPassword" >
     <h2>Iniciar sesión</h2>
     <p class="mt-6">Ingresa tu correo electrónico</p>
 
@@ -18,7 +17,7 @@
     <button (click)="onShowPassword()" class="mt-12">Continuar</button>
   </app-login-container>
 
-  <app-login-container *ngIf="showEnterPassword">
+  <app-login-container *ngIf="showEnterPassword" @entradaAnimacion>
     <div class="title-container">
       <img (click)="backToEmail()" src="assets/icons/arrow-back.svg" alt="" />
       <h2>Iniciar sesión</h2>
@@ -47,4 +46,3 @@
       Iniciar sesión con clave dinámica
     </a>
   </app-login-container>
-</div>

@@ -14,8 +14,6 @@ import { CommonModule } from '@angular/common';
     `
       :host {
         display: block;
-        width: 90%;
-        max-width: 500px;
       }
 
       .login-container {
