@@ -16,3 +16,62 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-text: #242424;
+  --primary-secondary: #707070;
+}
+
+// Global styles
+h2 {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 1;
+  text-align: center;
+}
+
+.input-container {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--primary-secondary);
+  border-radius: 5px;
+  width: 100%;
+
+  label {
+    position: absolute;
+    top: -12px;
+    left: 0.5rem;
+    z-index: 2;
+    background-color: #ffffff;
+    padding: 0 0.2rem;
+    color: #242424;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  input {
+    border-radius: 5px;
+    padding: 0.45rem;
+    width: 100%;
+    color: #242424;
+    font-weight: 400;
+    font-size: 19px;
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
+
+.text-info-small {
+  color: var(--primary);
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+}
