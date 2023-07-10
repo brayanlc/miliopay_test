@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgForOf, NgOptimizedImage } from '@angular/common';
+import { NgForOf, NgOptimizedImage } from '@angular/common';
 import { AppPaths } from '../../../core/enums/app-paths';
-import { RouterLink } from "@angular/router";
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 export interface Menu {
   label: string;
@@ -14,13 +14,17 @@ export interface Menu {
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf, RouterLink],
+  imports: [NgOptimizedImage, NgForOf, RouterLink, RouterLinkActive],
   template: `
     <img src="/assets/icons/logon.png" alt="" />
 
     <ul>
       <li *ngFor="let item of menu">
-        <a [routerLink]="item.path" class="flex items-center gap-4">
+        <a
+          [routerLink]="item.path"
+          class="flex items-center gap-4"
+          routerLinkActive="active"
+        >
           <img
             ngSrc="assets/icons/{{ item.icon }}.svg"
             width="24"
@@ -49,7 +53,8 @@ export interface Menu {
         font-weight: 700;
         font-size: 20px;
 
-        &:hover {
+        &:hover,
+        &.active {
           background-color: #ece6ff;
         }
       }
