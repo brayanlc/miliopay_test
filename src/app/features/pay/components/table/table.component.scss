@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid #d1d1d1;
+
+    th {
+      padding: 0.7rem 0;
+      color: #171717;
+      font-weight: 700;
+      font-size: 18px;
+      text-align: start;
+    }
+
+    td {
+      padding: 0.7rem 0;
+      color: #171717;
+      font-weight: 400;
+      font-size: 18px;
+      text-align: start;
+
+      p {
+        line-height: 1;
+
+        &.accent {
+          color: #0136FE;
+        }
+      }
+
+      .additional-info {
+        line-height: 1;
+        font-size: 14px;
+        color: #707070;
+        font-weight: 400;
+      }
+    }
+  }
+}

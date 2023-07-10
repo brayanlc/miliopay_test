@@ -1,0 +1,47 @@
+<table>
+  <thead>
+    <tr>
+      <th>
+        <input type="checkbox" name="check_all" id="check_all" />
+      </th>
+      <th>Pago</th>
+      <th>Proveedor</th>
+      <th>Categoría</th>
+      <th>Vence</th>
+      <th class="text-right">Valor</th>
+      <th>Responsable</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pay of data">
+      <td>
+        <input type="checkbox" name="check_all" id="check_one" />
+      </td>
+      <td>
+        <p class="accent">
+          {{ pay.payment }}
+        </p>
+        <span class="additional-info">12 items</span>
+      </td>
+      <td>
+        <p>
+          {{ pay.provider }}
+        </p>
+        <span class="additional-info">NIT 93453487987</span>
+      </td>
+      <td>{{ pay.category }}</td>
+      <td>{{ pay.due | date: 'dd/MM/yyyy' }}</td>
+      <td class="text-right">{{ pay.value | currency }}</td>
+      <td>
+        <p>
+          {{ pay.responsible }}
+        </p>
+        <span class="additional-info">Administrador</span>
+      </td>
+      <td>
+        <app-table-tag>Por pagar</app-table-tag>
+      </td>
+    </tr>
+  </tbody>
+</table>
