@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/auth/login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -28,7 +28,7 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       {
-        path: 'login',
+        path: AppPaths.LOGIN,
         loadComponent: () =>
           import('./features/auth/login/login.component').then(
             (c) => c.LoginComponent,
