@@ -1,0 +1,36 @@
+.summary {
+  display: flex;
+  color: #171717;
+  line-height: 1;
+
+  &__item {
+    border-right: 1px solid #ababab;
+    padding: 0 3rem;
+    padding-left: 1.5rem;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: .7rem;
+  }
+
+  &__amount {
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: .7rem;
+  }
+
+  &__total {
+    font-weight: 500;
+    font-size: 18px;
+
+    span {
+      color: #819bff;
+    }
+  }
+}
