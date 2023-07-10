@@ -1,0 +1,9 @@
+<div class="paginator">
+  <button [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">Previous</button>
+  <div class="page-info">
+    <ng-container *ngFor="let page of getPageNumbers()">
+      <span [class.active]="page === currentPage" (click)="changePage(page)">{{ page }}</span>
+    </ng-container>
+  </div>
+  <button [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">Next</button>
+</div>

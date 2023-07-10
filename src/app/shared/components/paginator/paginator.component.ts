@@ -1,0 +1,37 @@
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-paginator',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './paginator.component.html',
+  styleUrls: ['./paginator.component.scss'],
+})
+export class PaginatorComponent {
+  @Input() pageSize!: number;
+  @Input() length!: number;
+  @Input() pageSizeOptions!: number[];
+
+  currentPage!: number;
+  totalPages!: number;
+
+  ngOnInit() {
+    this.currentPage = 1;
+    this.totalPages = Math.ceil(this.length / this.pageSize);
+  }
+
+  changePage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
+  getPageNumbers(): number[] {
+    const pageNumbers = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  }
+}
