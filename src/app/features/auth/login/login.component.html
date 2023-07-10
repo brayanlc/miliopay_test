@@ -1,48 +1,41 @@
-  <app-login-container *ngIf="!showEnterPassword" >
+<app-login-container *ngIf="!showEnterPassword">
+  <h2>Iniciar sesión</h2>
+  <p class="mt-6">Ingresa tu correo electrónico</p>
+
+  <div class="input-container mt-8">
+    <label class="label" for="email">
+      <div class="text">Correo electrónico</div>
+    </label>
+    <input type="email" id="email" autocomplete="email" [formControl]="email" />
+  </div>
+
+  <button (click)="onShowPassword()" class="mt-12">Continuar</button>
+</app-login-container>
+
+<app-login-container *ngIf="showEnterPassword" @entradaAnimacion>
+  <div class="title-container">
+    <img (click)="backToEmail()" src="assets/icons/arrow-back.svg" alt="" />
     <h2>Iniciar sesión</h2>
-    <p class="mt-6">Ingresa tu correo electrónico</p>
+  </div>
 
-    <div class="input-container mt-8">
-      <label class="label" for="email">
-        <div class="text">Correo electrónico</div>
-      </label>
-      <input
-        type="email"
-        id="email"
-        autocomplete="email"
-        [formControl]="email"
-      />
-    </div>
+  <p class="alert mt-6">{{ email.value }}</p>
 
-    <button (click)="onShowPassword()" class="mt-12">Continuar</button>
-  </app-login-container>
+  <div class="input-container mt-8">
+    <label class="label" for="password">
+      <div class="text">Contraseña</div>
+    </label>
+    <input [type]="typeInput" id="password" autocomplete="current-password" />
+    <img (click)="showPasswordToggle()" src="assets/icons/eye-off.svg" alt="" />
+  </div>
+  <div class="flex justify-end mt-1 w-full">
+    <a href="#" class="text-info-small">Olvidé mi contraseña</a>
+  </div>
 
-  <app-login-container *ngIf="showEnterPassword" @entradaAnimacion>
-    <div class="title-container">
-      <img (click)="backToEmail()" src="assets/icons/arrow-back.svg" alt="" />
-      <h2>Iniciar sesión</h2>
-    </div>
+  <button class="mt-8" [routerLink]="['/', appPaths.PAYMENTS]">
+    Iniciar sesión
+  </button>
 
-    <p class="alert mt-6">{{ email.value }}</p>
-
-    <div class="input-container mt-8">
-      <label class="label" for="password">
-        <div class="text">Contraseña</div>
-      </label>
-      <input [type]="typeInput" id="password" autocomplete="current-password" />
-      <img
-        (click)="showPasswordToggle()"
-        src="assets/icons/eye-off.svg"
-        alt=""
-      />
-    </div>
-    <div class="flex justify-end mt-1 w-full">
-      <a href="#" class="text-info-small">Olvidé mi contraseña</a>
-    </div>
-
-    <button class="mt-8">Iniciar sesión</button>
-
-    <a href="#" class="text-info-small mt-6">
-      Iniciar sesión con clave dinámica
-    </a>
-  </app-login-container>
+  <a href="#" class="text-info-small mt-6">
+    Iniciar sesión con clave dinámica
+  </a>
+</app-login-container>

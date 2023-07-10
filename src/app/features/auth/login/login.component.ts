@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
-import { LoginContainerComponent } from '../../components/login-container/login-container.component';
+import { LoginContainerComponent } from '../components/login-container/login-container.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { RouterLink } from "@angular/router";
+import { AppPaths } from "../../../core/enums/app-paths";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ButtonComponent,
     LoginContainerComponent,
     ReactiveFormsModule,
+    RouterLink,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -30,6 +33,7 @@ export class LoginComponent {
   password = new FormControl('', [Validators.required]);
   showEnterPassword = false;
   typeInput: 'password' | 'text' = 'password';
+  protected readonly appPaths = AppPaths;
 
   onShowPassword(): void {
     this.email.markAsTouched();
