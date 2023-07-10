@@ -1,4 +1,5 @@
 export enum AppPaths {
   PAYMENTS = 'payments',
-  LOGIN = 'auth/login',
+  AUTH = 'auth',
+  LOGIN = 'login',
 }

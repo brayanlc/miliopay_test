@@ -24,7 +24,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'auth',
+    path: AppPaths.AUTH,
     component: AuthLayoutComponent,
     children: [
       {
