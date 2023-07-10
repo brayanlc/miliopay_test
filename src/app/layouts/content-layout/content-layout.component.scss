@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.content-layout {
+  height: 100vh;
+
+  .container {
+    background-color: white;
+    border-radius: 20px;
+    height: 100%;
+    padding: 1rem;
+  }
+}

@@ -1,1 +1,10 @@
-<p>content-layout works!</p>
+<div class="flex">
+  <div class="w-64 fixed left-0 top-0 bottom-0 hidden md:block">
+    <app-sidenav></app-sidenav>
+  </div>
+  <div class="content-layout flex-grow bg-neutral-100 p-4 ml-0 md:ml-64">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
