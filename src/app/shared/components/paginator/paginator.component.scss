@@ -1,0 +1,32 @@
+.paginator {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+
+  .page-info {
+    display: flex;
+    gap: 1rem;
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 4px;
+      width: 30px;
+      height: 30px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1;
+
+      &.active {
+        cursor: default;
+        border: 1px solid #ccc;
+        pointer-events: none;
+        font-weight: 500;
+        font-size: 17px;
+        transition: font-size .19s ease-in-out;
+      }
+    }
+  }
+}

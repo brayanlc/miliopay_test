@@ -1,9 +1,29 @@
-<div class="paginator">
-  <button [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">Previous</button>
-  <div class="page-info">
-    <ng-container *ngFor="let page of getPageNumbers()">
-      <span [class.active]="page === currentPage" (click)="changePage(page)">{{ page }}</span>
-    </ng-container>
+<div class="flex items-center gap-4">
+  <span>
+    {{ (currentPage - 1) * pageSize + 1 }} -
+    {{ isLastPage ? length : currentPage * pageSize }} de {{ length }} registros
+  </span>
+  <div class="paginator">
+    <button
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      <img src="assets/icons/arrow-left.svg" />
+    </button>
+    <div class="page-info">
+      <ng-container *ngFor="let page of getPageNumbers()">
+        <span
+          [class.active]="page === currentPage"
+          (click)="changePage(page)"
+          >{{ page }}</span
+        >
+      </ng-container>
+    </div>
+    <button
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+    >
+      <img src="assets/icons/arrow-right.svg" />
+    </button>
   </div>
-  <button [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">Next</button>
 </div>

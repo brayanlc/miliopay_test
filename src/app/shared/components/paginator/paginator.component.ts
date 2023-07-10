@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,10 +8,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent {
+export class PaginatorComponent implements OnInit {
   @Input() pageSize!: number;
   @Input() length!: number;
-  @Input() pageSizeOptions!: number[];
+
+  @Output() pageChange = new EventEmitter<number>();
 
   currentPage!: number;
   totalPages!: number;
@@ -25,6 +26,7 @@ export class PaginatorComponent {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
     }
+    this.pageChange.emit(this.currentPage);
   }
 
   getPageNumbers(): number[] {
@@ -33,5 +35,9 @@ export class PaginatorComponent {
       pageNumbers.push(i);
     }
     return pageNumbers;
+  }
+
+  get isLastPage(): boolean {
+    return this.currentPage === this.totalPages;
   }
 }
