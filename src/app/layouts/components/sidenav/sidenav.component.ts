@@ -16,36 +16,43 @@ export interface Menu {
   standalone: true,
   imports: [NgOptimizedImage, NgForOf, RouterLink, RouterLinkActive],
   template: `
-    <img src="/assets/icons/logon.png" alt="" />
+    <div class="flex flex-col h-full">
+      <img ngSrc="/assets/icons/logon.png" alt="" width="169" height="78" class="mt-8 ml-4"/>
 
-    <ul>
-      <li *ngFor="let item of menu">
-        <a
-          [routerLink]="item.path"
-          class="flex items-center gap-4"
-          routerLinkActive="active"
-        >
-          <img
-            ngSrc="assets/icons/{{ item.icon }}.svg"
-            width="24"
-            height="24"
-            alt="menu-icons-{{ item.label }}"
-          />
-          {{ item.label }}
-        </a>
-      </li>
-    </ul>
+      <ul class="flex-1 mt-16">
+        <li *ngFor="let item of menu">
+          <a
+            [routerLink]="item.path"
+            class="flex items-center gap-4"
+            routerLinkActive="active"
+          >
+            <img
+              ngSrc="assets/icons/{{ item.icon }}.svg"
+              width="24"
+              height="24"
+              alt="menu-icons-{{ item.label }}"
+            />
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
 
-    <div class="profile flex items-center gap-4">
-      <p class="initial-icon">B</p>
-      <div class="profile__info">
-        <p class="profile__name">Brayan</p>
-        <p class="profile__factory">Factory demo</p>
+      <div class="profile flex items-center gap-4">
+        <p class="initial-icon">B</p>
+        <div class="profile__info">
+          <p class="profile__name">Brayan</p>
+          <p class="profile__factory">Factory demo</p>
+        </div>
       </div>
     </div>
   `,
   styles: [
     `
+      :host {
+        display: block;
+        height: 100%;
+      }
+
       a {
         margin: 0 1rem;
         padding: 0.6rem 0.6rem 0.6rem 1rem;
