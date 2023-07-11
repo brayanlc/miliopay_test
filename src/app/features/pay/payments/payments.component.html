@@ -11,8 +11,31 @@
 
 <hr class="my-12" />
 
-<app-table></app-table>
+<div class="flex items-center justify-between mb-12">
+  <div class="flex items-center gap-4">
+    <div class="input-container-search">
+      <img src="assets/icons/search.svg" alt="search" />
+      <input type="text" placeholder="Buscar" />
+    </div>
+
+    <button icon>
+      <img ngSrc="assets/icons/sort.png" alt="filter" width="20" height="20" />
+      Ordenar
+    </button>
+  </div>
+
+  <button icon class="export">
+    <img ngSrc="assets/icons/export.svg" alt="filter" width="20" height="20" />
+    Ordenar
+  </button>
+</div>
+
+<app-table [payments]="payments.products"></app-table>
 
 <div class="flex justify-end mt-8">
-  <app-paginator [length]="60" [pageSize]="20"></app-paginator>
+  <app-paginator
+    [length]="payments.total"
+    [pageSize]="pageSize"
+    (pageChange)="getPayments($event)"
+  ></app-paginator>
 </div>
