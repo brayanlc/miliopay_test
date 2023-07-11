@@ -66,3 +66,26 @@ export class ButtonFlatComponent {}
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonOutlineComponent {}
+
+@Component({
+  selector: 'button [icon]',
+  standalone: true,
+  template: `<ng-content></ng-content>`,
+  styles: [
+    `
+      :host {
+        display: inline-flex;
+        gap: 0.3rem;
+        border: 1px var(--primary-text) solid;
+        border-radius: 25px;
+        padding: 0.4rem 1rem;
+        color: var(--primary-text);
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ButtonIconComponent {}
