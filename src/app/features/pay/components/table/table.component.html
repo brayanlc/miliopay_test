@@ -14,32 +14,32 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pay of data">
-      <td>
+    <tr *ngFor="let pay of payments">
+      <td style="width: 50px">
         <input type="checkbox" name="check_all" id="check_one" />
       </td>
-      <td>
+      <td style="width: 200px">
         <p class="accent">
-          {{ pay.payment }}
+          {{ pay.brand }}
         </p>
         <span class="additional-info">12 items</span>
       </td>
       <td>
         <p>
-          {{ pay.provider }}
+          {{ pay.rating }}
         </p>
         <span class="additional-info">NIT 93453487987</span>
       </td>
       <td>{{ pay.category }}</td>
-      <td>{{ pay.due | date: 'dd/MM/yyyy' }}</td>
-      <td class="text-right">{{ pay.value | currency }}</td>
+      <td>{{ '12-12-2023' | date : 'dd/MM/yyyy' }}</td>
+      <td class="text-right">{{ pay.price | currency }}</td>
       <td>
         <p>
-          {{ pay.responsible }}
+          {{ pay.title }}
         </p>
         <span class="additional-info">Administrador</span>
       </td>
-      <td>
+      <td style="width: 100px">
         <app-table-tag>Por pagar</app-table-tag>
       </td>
     </tr>
