@@ -38,13 +38,12 @@ export interface StatusNav {
         gap: 4rem;
         margin: 0;
         padding: 0;
-        color: #171717;
         list-style: none;
 
         li {
           position: relative;
           cursor: pointer;
-          color: #171717;
+          color: #707070;
           font-weight: 500;
           font-size: 22px;
 
@@ -60,11 +59,15 @@ export interface StatusNav {
             content: '';
           }
 
-          &:hover::after {
-            width: 85%;
+          &:hover {
+            color: var(--primary-text);
+            &::after {
+              width: 85%;
+            }
           }
 
           &.active {
+            color: var(--primary-text);
             &::after {
               width: 85%;
             }
