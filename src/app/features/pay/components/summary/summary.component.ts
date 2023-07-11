@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CurrencyPipe
+  ],
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss']
 })

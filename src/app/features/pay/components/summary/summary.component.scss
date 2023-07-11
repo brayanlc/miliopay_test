@@ -5,29 +5,33 @@
 
   &__item {
     border-right: 1px solid #ababab;
-    padding: 0 3rem;
-    padding-left: 1.5rem;
+    padding: 0 3rem 0 1.5rem;
 
     &:last-child {
       border-right: none;
+    }
+
+    &:first-child {
+      padding-left: 0;
     }
   }
 
   &__title {
     font-weight: 500;
     font-size: 18px;
-    margin-bottom: .7rem;
+    margin-bottom: .9rem;
   }
 
   &__amount {
     font-weight: 700;
     font-size: 30px;
-    margin-bottom: .7rem;
+    margin-bottom: .9rem;
   }
 
   &__total {
     font-weight: 500;
     font-size: 18px;
+    color: #707070;
 
     span {
       color: #819bff;
