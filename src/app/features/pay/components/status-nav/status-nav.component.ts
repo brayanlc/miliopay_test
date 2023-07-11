@@ -85,7 +85,7 @@ export interface StatusNav {
             top: -5px;
             border: 1px solid #809bff;
             border-radius: 25px;
-            padding: 2px 8px;
+            padding: 2px 10px;
             color: #809bff;
             font-weight: 700;
             font-size: 14px;
