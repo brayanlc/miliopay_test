@@ -20,11 +20,12 @@ body {
 :root {
   --primary-text: #242424;
   --primary-secondary: #707070;
+  --primary: #0136fe;
 }
 
 // Global styles
 h2 {
-  color: var(--primary);
+  color: var(--primary-text);
   font-weight: 700;
   font-size: 35px;
   line-height: 1;
@@ -54,7 +55,7 @@ h2 {
     border-radius: 5px;
     padding: 0.45rem;
     width: 100%;
-    color: #242424;
+    color: var(--primary-text);
     font-weight: 400;
     font-size: 19px;
   }
@@ -68,8 +69,11 @@ h2 {
   }
 }
 
+.input-container-search {
+}
+
 .text-info-small {
-  color: var(--primary);
+  color: var(--primary-text);
   font-weight: 400;
   font-size: 18px;
   text-align: center;
