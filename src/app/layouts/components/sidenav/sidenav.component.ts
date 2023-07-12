@@ -110,12 +110,12 @@ export class SidenavComponent {
 const menu: Menu[] = [
   {
     label: 'Menú 1',
-    path: '/menu1',
+    path: '#',
     icon: 'home',
   },
   {
     label: 'Menú 2',
-    path: '/menu2',
+    path: '#',
     icon: 'indicators',
   },
   {
@@ -125,17 +125,17 @@ const menu: Menu[] = [
   },
   {
     label: 'Menú 3',
-    path: '/menu3',
+    path: '#',
     icon: 'check-list',
   },
   {
     label: 'Bancos',
-    path: '/bancos',
+    path: '#',
     icon: 'bank',
   },
   {
     label: 'Menú 4',
-    path: '/menu4',
+    path: '#',
     icon: 'user',
   },
 ];
