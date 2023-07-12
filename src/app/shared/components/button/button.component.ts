@@ -34,10 +34,9 @@ export class ButtonComponent {}
         border-radius: 25px;
         background-color: #0136fe;
         padding: 0.5rem 2rem;
-        width: 250px;
         color: #fff;
         font-weight: 500;
-        font-size: 1.5rem;
+        font-size: 20px;
         line-height: 1;
       }
     `,
@@ -89,3 +88,25 @@ export class ButtonOutlineComponent {}
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonIconComponent {}
+
+@Component({
+  selector: 'button [link]',
+  standalone: true,
+  template: `<ng-content></ng-content>`,
+  styles: [
+    `
+      :host {
+        display: inline-flex;
+        gap: 0.3rem;
+        border-radius: 25px;
+        padding: 0.4rem 1rem;
+        color: var(--primary-text);
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 1;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ButtonLinkComponent {}
