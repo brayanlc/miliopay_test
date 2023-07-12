@@ -1,0 +1,118 @@
+<app-page-header [goBack]="true">Mi perfil</app-page-header>
+
+<div class="mt-16">
+  <h3>Información general</h3>
+
+  <div class="flex gap-4 items-center mt-12">
+    <div class="profile__img-container">
+      <img *ngIf="url" [src]="url" alt="profile" width="99" height="99" />
+      <div *ngIf="!url" class="placeholder">B</div>
+    </div>
+    <div>
+      <p class="profile__img-info">
+        Tamaño máximo: <br />
+        720 x 720px, png or jpeg
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-12">
+    <label class="input-file" for="file" (change)="selectFile($event)">
+      Cargar foto
+      <input type="file" id="file" />
+    </label>
+    <button link *ngIf="url" (click)="clearFile()">Restablecer</button>
+  </div>
+
+  <div class="input-container mt-16">
+    <label class="label" for="email">
+      <div class="text">Nombre</div>
+    </label>
+    <input type="email" id="email" autocomplete="email" />
+  </div>
+
+  <div class="input-container mt-8">
+    <label class="label" for="email">
+      <div class="text">Apellidos</div>
+    </label>
+    <input type="email" id="email" autocomplete="email" />
+  </div>
+</div>
+
+<hr class="my-6" />
+
+<div class="flex items-center justify-between">
+  <div class="w-[430px]">
+    <h3>Celular</h3>
+
+    <div class="flex items-end gap-1">
+      <app-flag></app-flag>
+
+      <div class="input-container mt-4">
+        <label class="label" for="phone">
+          <div class="text">Celular</div>
+        </label>
+        <input type="text" id="phone" autocomplete="phone" />
+      </div>
+    </div>
+  </div>
+
+  <button outline>Cambiar</button>
+</div>
+
+<hr class="my-6" />
+
+<div class="flex items-center justify-between">
+  <div>
+    <h3>Correo electrónico</h3>
+    <div class="input-container mt-4">
+      <label class="label" for="email">
+        <div class="text">Correo electrónico</div>
+      </label>
+      <input type="email" id="email" autocomplete="email" />
+    </div>
+  </div>
+
+  <button outline>Cambiar</button>
+</div>
+
+<hr class="my-6" />
+
+<div class="flex items-center justify-between">
+  <div>
+    <h3>Contraseña</h3>
+    <p class="profile__info">Elige una contraseña segura.</p>
+  </div>
+  <button outline>Cambiar</button>
+</div>
+
+<hr class="my-6 mb-10" />
+<h3>Autenticación de dos factores</h3>
+
+<p class="profile__info w-[60%]">
+  Mantenga su cuenta segura con nuestro métodos de autenticación multifactor.
+  Debes tener al menos un método habilitado.
+</p>
+
+<div class="flex justify-between items-center my-10">
+  <div>
+    <h4>Aplicación de autenticación</h4>
+    <p class="profile__info--small w-[60%]">
+      Una aplicación de autenticación le permite recibir códigos en su teléfono
+      sin tener que recibir mensajes de texto.
+    </p>
+  </div>
+
+  <button outline class="btn-enable">Deshabilitar</button>
+</div>
+
+<div class="flex justify-between items-center my-10">
+  <div>
+    <h4>Clave dinámica para confirmar acciones</h4>
+    <p class="profile__info--small">
+      Recibirás un SMS en tu celular con un código de verificación.
+    </p>
+  </div>
+
+  <button flat>Habilitar</button>
+</div>
