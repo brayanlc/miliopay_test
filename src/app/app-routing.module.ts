@@ -21,6 +21,13 @@ const routes: Routes = [
             (c) => c.PaymentsComponent,
           ),
       },
+      {
+        path: AppPaths.PROFILE,
+        loadComponent: () =>
+          import('./features/users/profile/profile.component').then(
+            (c) => c.ProfileComponent,
+          ),
+      },
     ],
   },
   {
