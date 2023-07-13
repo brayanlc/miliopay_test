@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { NgForOf, NgOptimizedImage } from '@angular/common';
 import { AppPaths } from '../../../core/enums/app-paths';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  CdkConnectedOverlay,
+  CdkOverlayOrigin,
+  OverlayModule,
+} from '@angular/cdk/overlay';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 export interface Menu {
   label: string;
@@ -14,10 +20,25 @@ export interface Menu {
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf, RouterLink, RouterLinkActive],
+  imports: [
+    NgOptimizedImage,
+    NgForOf,
+    RouterLink,
+    RouterLinkActive,
+    CdkConnectedOverlay,
+    CdkOverlayOrigin,
+    OverlayModule,
+    ProfileCardComponent,
+  ],
   template: `
     <div class="flex flex-col h-full">
-      <img ngSrc="/assets/icons/logon.png" alt="" width="169" height="78" class="mt-8 ml-4"/>
+      <img
+        ngSrc="/assets/icons/logon.png"
+        alt=""
+        width="169"
+        height="78"
+        class="mt-8 ml-4"
+      />
 
       <ul class="flex-1 mt-16">
         <li *ngFor="let item of menu">
@@ -37,13 +58,27 @@ export interface Menu {
         </li>
       </ul>
 
-      <div class="profile flex items-center gap-4">
+      <div
+        class="profile flex items-center gap-4 cursor-pointer"
+        (click)="isOpen = !isOpen"
+        cdkOverlayOrigin
+        #trigger="cdkOverlayOrigin"
+      >
         <p class="initial-icon">B</p>
         <div class="profile__info">
           <p class="profile__name">Brayan</p>
           <p class="profile__factory">Factory demo</p>
         </div>
       </div>
+
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="trigger"
+        [cdkConnectedOverlayOpen]="isOpen"
+        (overlayOutsideClick)="isOpen = false"
+      >
+        <app-profile-card></app-profile-card>
+      </ng-template>
     </div>
   `,
   styles: [
@@ -105,6 +140,7 @@ export interface Menu {
 })
 export class SidenavComponent {
   menu = menu;
+  isOpen = false;
 }
 
 const menu: Menu[] = [
