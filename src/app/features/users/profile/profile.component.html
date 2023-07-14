@@ -17,11 +17,8 @@
   </div>
 
   <div class="mt-12">
-    <label class="input-file" for="file" (change)="selectFile($event)">
-      Cargar foto
-      <input type="file" id="file" />
-    </label>
-    <button link *ngIf="url" (click)="clearFile()">Restablecer</button>
+    <button outline (click)="openDialog()">Cambiar</button>
+    <button link *ngIf="url">Restablecer</button>
   </div>
 
   <div class="input-container mt-16">

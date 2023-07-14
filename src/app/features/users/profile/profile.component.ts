@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +8,8 @@ import {
   ButtonOutlineComponent,
 } from '../../../shared/components/button/button.component';
 import { FlagComponent } from '../../../shared/components/flag/flag.component';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { UploadComponent } from '../components/upload/upload.component';
 
 @Component({
   selector: 'app-profile',
@@ -21,37 +23,31 @@ import { FlagComponent } from '../../../shared/components/flag/flag.component';
     ButtonLinkComponent,
     ButtonFlatComponent,
     NgOptimizedImage,
+    DialogModule,
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+  private dialog: Dialog = inject(Dialog);
+
   url: any;
   msg = '';
 
-  selectFile(event: any) {
-    if (!event.target.files[0] || event.target.files[0].length == 0) {
-      this.msg = 'You must select an image';
-      return;
-    }
 
-    const mimeType = event.target.files[0].type;
-
-    if (mimeType.match(/image\/*/) == null) {
-      this.msg = 'Only images are supported';
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-
-    reader.onload = (_event) => {
-      this.msg = '';
-      this.url = reader.result;
-    };
-  }
 
   clearFile() {
     this.url = null;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open<string>(UploadComponent, {
+      width: '800px',
+      height: '800px',
+    });
+
+    dialogRef.closed.subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }
