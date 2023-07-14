@@ -1,14 +1,23 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule, NgIf, NgOptimizedImage } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { DialogRef } from '@angular/cdk/dialog';
-import { ButtonLinkComponent } from '../../../../shared/components/button/button.component';
+import { ButtonLinkComponent, ButtonOutlineComponent, } from '../../../../shared/components/button/button.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-upload',
   standalone: true,
-  imports: [NgOptimizedImage, ButtonLinkComponent, NgIf],
+  imports: [
+    NgOptimizedImage,
+    ButtonLinkComponent,
+    NgIf,
+    ButtonOutlineComponent,
+    ReactiveFormsModule,
+  ],
   template: `
-    <div class="w-full h-full flex items-center justify-center flex-col">
+    <div
+      class="w-full h-full flex items-center justify-center flex-col relative"
+    >
       <label
         class="flex items-center justify-center relative"
         for="file"
@@ -21,11 +30,31 @@ import { ButtonLinkComponent } from '../../../../shared/components/button/button
         <div class="img-container img-container-principal">
           <img [src]="url" alt="profile" class="img-principal" />
         </div>
-        <input type="file" id="file" accept="image/png, image/jpeg" />
+        <input
+          type="file"
+          id="file"
+          [formControl]="fileForm"
+          accept="image/png, image/jpeg"
+        />
       </label>
 
-      <div>
-        <button link>Restablecer</button>
+      <div class="flex gap-4 mt-12">
+        <button class="flex-none btn-icon">
+          <img
+            src="assets/icons/rotate.svg"
+            alt="rotate"
+            height="24"
+            width="24"
+          />
+        </button>
+        <button class="flex-none btn-icon">
+          <img ngSrc="assets/icons/cut.svg" alt="cut" height="24" width="24" />
+        </button>
+        <button link (click)="setInitialImage()">Restablecer</button>
+      </div>
+
+      <div class="btn-group">
+        <button outline (click)="close()">Guardar</button>
       </div>
     </div>
   `,
@@ -39,9 +68,35 @@ import { ButtonLinkComponent } from '../../../../shared/components/button/button
         height: 100%;
       }
 
+      button[outline] {
+        border: 1px solid #ffffff;
+        padding: 0.7rem 2.5rem;
+        font-weight: 500;
+        font-size: 20px;
+      }
+
       button {
         color: #ffffff;
       }
+
+      .btn-icon {
+        width: 24px !important;
+        height: 24px !important;
+
+        img {
+          display: block;
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .btn-group {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
       label {
         width: 400px;
         height: 400px;
@@ -70,10 +125,15 @@ import { ButtonLinkComponent } from '../../../../shared/components/button/button
     `,
   ],
 })
-export class UploadComponent {
+export class UploadComponent implements OnInit {
   public dialogRef: DialogRef<File> = inject(DialogRef);
-  public url = './assets/no-profile-picture-icon.png';
+  public url = '';
   private file: File | undefined = undefined;
+  public fileForm = new FormControl();
+
+  ngOnInit() {
+    this.setInitialImage();
+  }
 
   selectFile(event: any) {
     if (!event.target.files[0] || event.target.files[0].length == 0) {
@@ -92,6 +152,15 @@ export class UploadComponent {
   }
 
   public close() {
+    if (!this.file) {
+      return;
+    }
     this.dialogRef.close(this.file);
+  }
+
+  setInitialImage() {
+    this.url = './assets/no-profile-picture-icon.png';
+    this.file = undefined;
+    this.fileForm.reset();
   }
 }
