@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { NgForOf, NgOptimizedImage } from '@angular/common';
 import { AppPaths } from '../../../core/enums/app-paths';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   CdkConnectedOverlay,
   CdkOverlayOrigin,
+  FlexibleConnectedPositionStrategy,
+  Overlay,
+  OverlayConfig,
   OverlayModule,
+  OverlayRef,
 } from '@angular/cdk/overlay';
 import { ProfileCardComponent } from '../profile-card/profile-card.component';
+import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 
 export interface Menu {
   label: string;
@@ -29,6 +34,7 @@ export interface Menu {
     CdkOverlayOrigin,
     OverlayModule,
     ProfileCardComponent,
+    PortalModule,
   ],
   template: `
     <div class="flex flex-col h-full">
@@ -60,9 +66,8 @@ export interface Menu {
 
       <div
         class="profile flex items-center gap-4 cursor-pointer"
-        (click)="isOpen = !isOpen"
-        cdkOverlayOrigin
-        #trigger="cdkOverlayOrigin"
+        (click)="showDropdown()"
+        #profileInfo
       >
         <p class="initial-icon">B</p>
         <div class="profile__info">
@@ -71,12 +76,7 @@ export interface Menu {
         </div>
       </div>
 
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayOrigin]="trigger"
-        [cdkConnectedOverlayOpen]="isOpen"
-        (overlayOutsideClick)="isOpen = false"
-      >
+      <ng-template cdk-portal #overlayTemplate="cdkPortal">
         <app-profile-card></app-profile-card>
       </ng-template>
     </div>
@@ -139,8 +139,60 @@ export interface Menu {
   ],
 })
 export class SidenavComponent {
+  private overlay: Overlay = inject(Overlay);
+
+  @ViewChild('profileInfo') public profileInfo!: ElementRef;
+  @ViewChild(CdkPortal) public contentTemplate!: CdkPortal;
+
+  private overlayRef!: OverlayRef;
+
   menu = menu;
   isOpen = false;
+
+  public showDropdown(): void {
+    this.overlayRef = this.overlay.create(this.getOverlayConfig());
+    this.overlayRef.attach(this.contentTemplate);
+    this.syncWidth();
+    this.overlayRef.backdropClick().subscribe(() => this.hide());
+  }
+
+  private syncWidth(): void {
+    if (!this.overlayRef) {
+      return;
+    }
+
+    const refRectWidth =
+      this.profileInfo.nativeElement.getBoundingClientRect().width;
+    this.overlayRef.updateSize({ width: refRectWidth });
+  }
+
+  private hide(): void {
+    this.overlayRef.detach();
+  }
+
+  private getOverlayConfig(): OverlayConfig {
+    const positionStrategy = this.overlay
+      .position()
+      .flexibleConnectedTo(this.profileInfo.nativeElement)
+      .withPush(true)
+      .withPositions([
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'start',
+          overlayY: 'top',
+          offsetY: -20,
+        },
+      ]);
+
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    return new OverlayConfig({
+      positionStrategy: positionStrategy,
+      scrollStrategy: scrollStrategy,
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+    });
+  }
 }
 
 const menu: Menu[] = [

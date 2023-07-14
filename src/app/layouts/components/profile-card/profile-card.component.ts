@@ -1,19 +1,29 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Output,
+} from '@angular/core';
 import { AppPaths } from '../../../core/enums/app-paths';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-profile-card',
   standalone: true,
-  imports: [
-    RouterLink
-  ],
+  imports: [RouterLink, NgOptimizedImage],
   template: `
     <div class="profile-card">
-      <div class="flex gap-4">
-        <img src="assets/icons/profile.png" alt="" />
-        <div>
-          <p class="profile-card__name">Brayan Carbali</p>
+      <div class="flex items-start gap-4">
+        <img
+          ngSrc="assets/icons/profile.png"
+          alt="profile"
+          height="51"
+          width="51"
+        />
+        <div class="flex-1">
+          <p class="profile-card__name mb-1">Brayan Carbali Lucumi</p>
           <p class="profile-card__id">ID 1234</p>
         </div>
       </div>
@@ -28,16 +38,20 @@ import { RouterLink } from "@angular/router";
     `
       :host {
         display: block;
+        width: 100%;
       }
 
       .profile-card {
-        box-shadow: 0px 4px 4px 0px #adadad40;
+        box-shadow: 0 4px 4px 0 #adadad40;
         border-radius: 10px;
+        background-color: #ffffff;
         padding: 1rem;
+        width: 100%;
 
         &__name {
           font-weight: 700;
           font-size: 18px;
+          line-height: 1;
         }
 
         &__id {
@@ -67,4 +81,16 @@ import { RouterLink } from "@angular/router";
 })
 export class ProfileCardComponent {
   protected readonly appPaths = AppPaths;
+
+  @Output() clickOutside = new EventEmitter<void>();
+
+  constructor(private elementRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event.target'])
+  public onClick(target: any) {
+    const clickedInside = this.elementRef.nativeElement.contains(target);
+    if (!clickedInside) {
+      this.clickOutside.emit();
+    }
+  }
 }
