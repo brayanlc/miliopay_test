@@ -34,7 +34,7 @@
 
 <div class="flex justify-end mt-8">
   <app-paginator
-    [length]="payments.total"
+    [length]="payments?.total || 0"
     [pageSize]="pageSize"
     (pageChange)="getPayments($event)"
   ></app-paginator>

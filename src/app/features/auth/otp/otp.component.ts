@@ -5,6 +5,9 @@ import { InputOtpComponent } from '../components/input-pin/input-otp.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppPaths } from '../../../core/enums/app-paths';
+import { AuthResponse, Credentials } from '../auth';
+import { AuthService } from '../auth.service';
+import { CacheService } from '../../../core/services/cache.service';
 
 @Component({
   selector: 'app-otp',
@@ -61,6 +64,8 @@ import { AppPaths } from '../../../core/enums/app-paths';
 })
 export class OtpComponent implements OnInit {
   private router: Router = inject(Router);
+  private cacheService: CacheService = inject(CacheService);
+  private authService: AuthService = inject(AuthService);
 
   protected readonly appPaths = AppPaths;
   countdown: number = 59;
@@ -75,9 +80,19 @@ export class OtpComponent implements OnInit {
   optListener() {
     this.otpForm.valueChanges.subscribe((otp) => {
       if (otp?.length === 4) {
-        this.router.navigate([this.appPaths.PAYMENTS]);
+        this.login();
       }
-      console.log(otp);
+    });
+  }
+
+  login() {
+    const credentials: Credentials = {
+      username: 'kminchelle',
+      password: '0lelplR',
+    };
+    this.authService.login(credentials).subscribe((response: AuthResponse) => {
+      this.cacheService.setItem('AuthResponse', response);
+      this.router.navigate([AppPaths.PAYMENTS]);
     });
   }
 
