@@ -1,15 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  inject,
-  Output,
-} from '@angular/core';
+import { Component, inject, } from '@angular/core';
 import { AppPaths } from '../../../core/enums/app-paths';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
-import { CacheService } from '../../../core/services/cache.service';
 import { AuthService } from '../../../features/auth/auth.service';
 
 @Component({
