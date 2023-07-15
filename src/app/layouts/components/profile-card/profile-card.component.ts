@@ -3,11 +3,14 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  inject,
   Output,
 } from '@angular/core';
 import { AppPaths } from '../../../core/enums/app-paths';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
+import { CacheService } from '../../../core/services/cache.service';
+import { AuthService } from '../../../features/auth/auth.service';
 
 @Component({
   selector: 'app-profile-card',
@@ -31,7 +34,7 @@ import { NgOptimizedImage } from '@angular/common';
       <hr class="my-4 -mx-2" />
 
       <a [routerLink]="appPaths.PROFILE" class="my-1">Mi cuenta</a>
-      <button class="mt-2">Cerrar sesión</button>
+      <button class="mt-2" (click)="logout()">Cerrar sesión</button>
     </div>
   `,
   styles: [
@@ -80,17 +83,11 @@ import { NgOptimizedImage } from '@angular/common';
   ],
 })
 export class ProfileCardComponent {
+  private authService: AuthService = inject(AuthService);
+
   protected readonly appPaths = AppPaths;
 
-  @Output() clickOutside = new EventEmitter<void>();
-
-  constructor(private elementRef: ElementRef) {}
-
-  @HostListener('document:click', ['$event.target'])
-  public onClick(target: any) {
-    const clickedInside = this.elementRef.nativeElement.contains(target);
-    if (!clickedInside) {
-      this.clickOutside.emit();
-    }
+  logout() {
+    this.authService.logout();
   }
 }

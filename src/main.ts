@@ -6,10 +6,16 @@ import {
   BrowserAnimationsModule,
   provideAnimations,
 } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import { AuthorizationInterceptor } from './app/core/interceptors/auth.interceptor';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideHttpClient(withInterceptors([AuthorizationInterceptor])),
     importProvidersFrom(
       BrowserModule,
       AppRoutingModule,

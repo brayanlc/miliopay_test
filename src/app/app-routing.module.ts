@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ContentLayoutComponent } from './layouts/content-layout/content-layout.component';
 import { AppPaths } from './core/enums/app-paths';
+import { authGuard } from "./core/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       {
         path: AppPaths.PAYMENTS,
+        canActivate: [authGuard],
         loadComponent: () =>
           import('./features/pay/payments/payments.component').then(
             (c) => c.PaymentsComponent,
@@ -23,6 +25,7 @@ const routes: Routes = [
       },
       {
         path: AppPaths.PROFILE,
+        canActivate: [authGuard],
         loadComponent: () =>
           import('./features/users/profile/profile.component').then(
             (c) => c.ProfileComponent,
@@ -39,6 +42,13 @@ const routes: Routes = [
         loadComponent: () =>
           import('./features/auth/login/login.component').then(
             (c) => c.LoginComponent,
+          ),
+      },
+      {
+        path: AppPaths.OTP,
+        loadComponent: () =>
+          import('./features/auth/otp/otp.component').then(
+            (c) => c.OtpComponent,
           ),
       },
     ],

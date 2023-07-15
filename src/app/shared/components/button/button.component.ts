@@ -16,6 +16,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         font-weight: 500;
         font-size: 1.5rem;
         line-height: 1;
+
+        &:disabled {
+          border-color: #dddddd;
+          background-color: #dddddd;
+        }
       }
     `,
   ],

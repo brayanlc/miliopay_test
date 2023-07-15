@@ -30,11 +30,11 @@
   </button>
 </div>
 
-<app-table [payments]="payments.products"></app-table>
+<app-table [payments]="payments?.products"></app-table>
 
 <div class="flex justify-end mt-8">
   <app-paginator
-    [length]="payments.total"
+    [length]="payments?.total"
     [pageSize]="pageSize"
     (pageChange)="getPayments($event)"
   ></app-paginator>
