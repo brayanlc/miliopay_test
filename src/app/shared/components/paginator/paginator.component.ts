@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PaginatorComponent implements OnInit {
   @Input() pageSize!: number;
-  @Input() length!: number;
+  @Input() length: number | undefined = 0;
 
   @Output() pageChange = new EventEmitter<number>();
 
@@ -19,7 +19,7 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit() {
     this.currentPage = 1;
-    this.totalPages = Math.ceil(this.length / this.pageSize);
+    this.totalPages = Math.ceil((this.length || 0) / this.pageSize);
   }
 
   changePage(page: number) {
