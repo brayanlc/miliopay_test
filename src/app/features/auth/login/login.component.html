@@ -12,7 +12,7 @@
   <button (click)="onShowPassword()" class="mt-12">Continuar</button>
 </app-login-container>
 
-<app-login-container *ngIf="showEnterPassword" @entradaAnimacion>
+<app-login-container *ngIf="showEnterPassword" @entryAnimation>
   <div class="title-container">
     <img (click)="backToEmail()" src="assets/icons/arrow-back.svg" alt="" />
     <h2>Iniciar sesión</h2>
@@ -24,18 +24,19 @@
     <label class="label" for="password">
       <div class="text">Contraseña</div>
     </label>
-    <input [type]="typeInput" id="password" autocomplete="current-password" />
+    <input [type]="typeInput" [formControl]="password" id="password" autocomplete="current-password" />
     <img (click)="showPasswordToggle()" src="assets/icons/eye-off.svg" alt="" />
   </div>
   <div class="flex justify-end mt-1 w-full">
     <a href="#" class="text-info-small">Olvidé mi contraseña</a>
   </div>
 
-  <button class="mt-8" [routerLink]="['/', appPaths.PAYMENTS]">
-    Iniciar sesión
-  </button>
+  <button class="mt-8" (click)="onSubmit()" [disabled]="submitted">Iniciar sesión</button>
 
-  <a href="#" class="text-info-small mt-6">
+  <a
+    [routerLink]="['/', appPaths.AUTH, appPaths.OTP]"
+    class="text-info-small mt-6"
+  >
     Iniciar sesión con clave dinámica
   </a>
 </app-login-container>
