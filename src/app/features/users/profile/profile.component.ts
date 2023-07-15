@@ -34,8 +34,6 @@ export class ProfileComponent {
   url: any;
   msg = '';
 
-
-
   clearFile() {
     this.url = null;
   }
@@ -47,7 +45,7 @@ export class ProfileComponent {
     });
 
     dialogRef.closed.subscribe((result) => {
-      console.log('The dialog was closed');
+      this.url = result;
     });
   }
 }

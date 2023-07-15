@@ -18,21 +18,21 @@
 
   <div class="mt-12">
     <button outline (click)="openDialog()">Cambiar</button>
-    <button link *ngIf="url">Restablecer</button>
+    <button link *ngIf="url" (click)="clearFile()">Restablecer</button>
   </div>
 
   <div class="input-container mt-16">
-    <label class="label" for="email">
+    <label class="label" for="name">
       <div class="text">Nombre</div>
     </label>
-    <input type="email" id="email" autocomplete="email" />
+    <input type="email" id="name" autocomplete="name" />
   </div>
 
   <div class="input-container mt-8">
-    <label class="label" for="email">
+    <label class="label" for="lastName">
       <div class="text">Apellidos</div>
     </label>
-    <input type="email" id="email" autocomplete="email" />
+    <input type="email" id="lastName" autocomplete="lastName" />
   </div>
 </div>
 
