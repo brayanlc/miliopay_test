@@ -1,7 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { DialogRef } from '@angular/cdk/dialog';
-import { ButtonLinkComponent, ButtonOutlineComponent, } from '../../../../shared/components/button/button.component';
+import {
+  ButtonLinkComponent,
+  ButtonOutlineComponent,
+} from '../../../../shared/components/button/button.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -41,7 +44,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
       <div class="flex gap-4 mt-12">
         <button class="flex-none btn-icon">
           <img
-            src="assets/icons/rotate.svg"
+            ngSrc="assets/icons/rotate.svg"
             alt="rotate"
             height="24"
             width="24"
@@ -126,7 +129,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   ],
 })
 export class UploadComponent implements OnInit {
-  public dialogRef: DialogRef<File> = inject(DialogRef);
+  public dialogRef: DialogRef<string> = inject(DialogRef);
   public url = '';
   private file: File | undefined = undefined;
   public fileForm = new FormControl();
@@ -155,7 +158,7 @@ export class UploadComponent implements OnInit {
     if (!this.file) {
       return;
     }
-    this.dialogRef.close(this.file);
+    this.dialogRef.close(this.url);
   }
 
   setInitialImage() {
